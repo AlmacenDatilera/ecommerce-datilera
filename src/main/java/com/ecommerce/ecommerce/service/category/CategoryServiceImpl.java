@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.ecommerce.domain.Category;
 import com.ecommerce.ecommerce.dto.category.CategoryCreateDto;
 import com.ecommerce.ecommerce.dto.category.CategoryDto;
+import com.ecommerce.ecommerce.dto.category.CategoryPatchDto;
 import com.ecommerce.ecommerce.exceptions.ResourceNotFoundException;
 import com.ecommerce.ecommerce.mappers.category.CategoryMapper;
 import com.ecommerce.ecommerce.repository.CategoryRepository;
@@ -51,6 +52,17 @@ public class CategoryServiceImpl implements CategoryService {
         Category categoryUpdate=categoryRepository.findById(id).orElseThrow();
         categoryUpdate.setName(categoryCreateDto.name());
         return categoryMapper.categoryToCategoryDto(categoryRepository.save(categoryUpdate));
+    }
+
+    @Override
+    public CategoryDto patchCategory(Long id, CategoryPatchDto categoryPatchDto) {
+        Category category=categoryRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con ID: " + id));
+        
+        if (categoryPatchDto.esDestacada() != null) {
+            category.setEsDestacada(categoryPatchDto.esDestacada());
+        }
+        return categoryMapper.categoryToCategoryDto(categoryRepository.save(category));
     }
 
 }

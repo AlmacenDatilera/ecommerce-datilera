@@ -35,10 +35,10 @@ public class Product {
     List<ProductImage> images;
     
     @Column(name = "es_destacado", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean esDestacado = false; // Nuevo campo
+    private boolean esDestacado = false;
 
     @Column(name = "es_novedad", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-    private boolean esNovedad = false; // Nuevo campo
+    private boolean esNovedad = false; 
     
     @Column(nullable = false)
     Double price;

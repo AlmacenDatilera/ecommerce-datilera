@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.ecommerce.dto.category.CategoryCreateDto;
+import com.ecommerce.ecommerce.dto.category.CategoryDto;
+import com.ecommerce.ecommerce.dto.category.CategoryPatchDto;
 import com.ecommerce.ecommerce.service.category.CategoryService;
 
 import jakarta.validation.Valid;
@@ -47,5 +50,10 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCategory(@PathVariable("id") Long id_category, @RequestBody @Valid CategoryCreateDto categoryCreateDto){
         return ResponseEntity.ok().body(categoryService.updateCategory(id_category, categoryCreateDto));
+    }
+
+    @PatchMapping("/{id}")
+    public CategoryDto patchCategory(@PathVariable Long id, @RequestBody CategoryPatchDto categoryPatchDto) {
+        return categoryService.patchCategory(id, categoryPatchDto);
     }
 }

@@ -11,6 +11,7 @@ import com.ecommerce.ecommerce.dto.category.CategoryDto;
 public interface CategoryMapper {
     @Mapping(target = "products", ignore = true)
     @Mapping(target = "id_category", ignore = true)
+    @Mapping(target = "esDestacada", ignore = true)
     Category categoryCreateDtoToCategory(CategoryCreateDto categoryCreateDto);
 
     CategoryDto categoryToCategoryDto(Category category);

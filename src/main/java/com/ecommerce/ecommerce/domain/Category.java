@@ -27,5 +27,8 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     List<Product> products;
+
+    @Column(name = "es_destacada", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean esDestacada = false;
 }
 
